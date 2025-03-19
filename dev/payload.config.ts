@@ -1,20 +1,20 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import path from 'path'
-import { buildConfig } from 'payload'
-import {  } from ''
-import sharp from 'sharp'
-import { fileURLToPath } from 'url'
+import { sqliteAdapter } from "@payloadcms/db-sqlite";
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import path from "path";
+import { buildConfig } from "payload";
+import sharp from "sharp";
+import { fileURLToPath } from "url";
 
-import { devUser } from './helpers/credentials.js'
-import { testEmailAdapter } from './helpers/testEmailAdapter.js'
-import { seed } from './seed.js'
+import { excalidrawPlugin } from "../src/index.js";
+import { devUser } from "./helpers/credentials.js";
+import { testEmailAdapter } from "./helpers/testEmailAdapter.js";
+import { seed } from "./seed.js";
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 if (!process.env.ROOT_DIR) {
-  process.env.ROOT_DIR = dirname
+  process.env.ROOT_DIR = dirname;
 }
 
 export default buildConfig({
@@ -26,35 +26,26 @@ export default buildConfig({
   },
   collections: [
     {
-      slug: 'posts',
+      slug: "users",
+      auth: true,
       fields: [],
-    },
-    {
-      slug: 'media',
-      fields: [],
-      upload: {
-        staticDir: path.resolve(dirname, 'media'),
-      },
     },
   ],
-  db: mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
+  db: sqliteAdapter({
+    client: {
+      url: process.env.DATABASE_URL || "file:./.store/db.sql",
+    },
+    migrationDir: path.resolve(dirname, "migrations"),
   }),
   editor: lexicalEditor(),
   email: testEmailAdapter,
   onInit: async (payload) => {
-    await seed(payload)
+    await seed(payload);
   },
-  plugins: [
-    ({
-      collections: {
-        posts: true,
-      },
-    }),
-  ],
-  secret: process.env.PAYLOAD_SECRET || 'test-secret_key',
+  plugins: [excalidrawPlugin({})],
+  secret: process.env.PAYLOAD_SECRET || "test-secret_key",
   sharp,
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, "payload-types.ts"),
   },
-})
+});
