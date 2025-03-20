@@ -4,8 +4,6 @@ import { createScenes } from "./scene.js";
 
 export type PluginOptions = {
   disabled?: boolean;
-  sceneSlug?: string;
-  sceneUploadSlug?: string;
 };
 
 export const excalidrawPlugin =

@@ -6,9 +6,26 @@ export const createScenes = (
   pluginOptions: PluginOptions,
 ): CollectionConfig => {
   return {
-    slug: pluginOptions.sceneSlug || "excalidraw-scenes",
+    slug: "excalidraw-scenes",
+    admin: {
+      components: {
+        views: {
+          edit: {
+            root: {
+              actions: [],
+              Component: {
+                path: "payload-plugin-excalidraw/rsc#SceneEdit",
+              },
+            },
+          },
+          list: {
+            Component: { path: "payload-plugin-excalidraw/rsc#SceneList" },
+          },
+        },
+      },
+    },
     fields: [
-      { name: "name", type: "text", defaultValue: "Untitled" },
+      { name: "name", type: "text" },
       { name: "sceneData", type: "json" },
     ],
     timestamps: true,

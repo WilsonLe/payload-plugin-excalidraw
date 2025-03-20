@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "payload-plugin-excalidraw",
   "version": "1.0.0",
-  "description": "A blank template to get started with Payload 3.0",
+  "description": "A Payload plugin that integrates excalidraw scenes",
   "license": "MIT",
   "type": "module",
   "exports": {

@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import { excalidrawPlugin } from "../src/index.js";
 import { devUser } from "./helpers/credentials.js";
 import { testEmailAdapter } from "./helpers/testEmailAdapter.js";
+import { migrations } from "./migrations/index.js";
 import { seed } from "./seed.js";
 
 const filename = fileURLToPath(import.meta.url);
@@ -20,9 +21,7 @@ if (!process.env.ROOT_DIR) {
 export default buildConfig({
   admin: {
     autoLogin: devUser,
-    importMap: {
-      baseDir: path.resolve(dirname),
-    },
+    importMap: { baseDir: path.resolve(dirname) },
   },
   collections: [
     {
@@ -32,10 +31,9 @@ export default buildConfig({
     },
   ],
   db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URL || "file:./.store/db.sql",
-    },
+    client: { url: process.env.DATABASE_URL || "file:./.store/db.sql" },
     migrationDir: path.resolve(dirname, "migrations"),
+    prodMigrations: migrations,
   }),
   editor: lexicalEditor(),
   email: testEmailAdapter,
