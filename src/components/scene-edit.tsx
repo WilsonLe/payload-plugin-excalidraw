@@ -3,8 +3,8 @@
 import type { ListComponentServerProps } from "@payloadcms/ui";
 import type { FC } from "react";
 
-import React from "react";
+import { ExcalidrawWrapper } from "./excalidraw-wrapper.js";
 
 export const SceneEdit: FC<ListComponentServerProps> = () => {
-  return <div>Scene Edit</div>;
+  return <ExcalidrawWrapper />;
 };

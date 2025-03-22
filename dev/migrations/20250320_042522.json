@@ -82,23 +82,17 @@
       "indexes": {
         "users_updated_at_idx": {
           "name": "users_updated_at_idx",
-          "columns": [
-            "updated_at"
-          ],
+          "columns": ["updated_at"],
           "isUnique": false
         },
         "users_created_at_idx": {
           "name": "users_created_at_idx",
-          "columns": [
-            "created_at"
-          ],
+          "columns": ["created_at"],
           "isUnique": false
         },
         "users_email_idx": {
           "name": "users_email_idx",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         }
       },
@@ -159,23 +153,17 @@
       "indexes": {
         "excalidraw_scenes_updated_at_idx": {
           "name": "excalidraw_scenes_updated_at_idx",
-          "columns": [
-            "updated_at"
-          ],
+          "columns": ["updated_at"],
           "isUnique": false
         },
         "excalidraw_scenes_created_at_idx": {
           "name": "excalidraw_scenes_created_at_idx",
-          "columns": [
-            "created_at"
-          ],
+          "columns": ["created_at"],
           "isUnique": false
         },
         "excalidraw_scenes__status_idx": {
           "name": "excalidraw_scenes__status_idx",
-          "columns": [
-            "_status"
-          ],
+          "columns": ["_status"],
           "isUnique": false
         }
       },
@@ -264,51 +252,37 @@
       "indexes": {
         "_excalidraw_scenes_v_parent_idx": {
           "name": "_excalidraw_scenes_v_parent_idx",
-          "columns": [
-            "parent_id"
-          ],
+          "columns": ["parent_id"],
           "isUnique": false
         },
         "_excalidraw_scenes_v_version_version_updated_at_idx": {
           "name": "_excalidraw_scenes_v_version_version_updated_at_idx",
-          "columns": [
-            "version_updated_at"
-          ],
+          "columns": ["version_updated_at"],
           "isUnique": false
         },
         "_excalidraw_scenes_v_version_version_created_at_idx": {
           "name": "_excalidraw_scenes_v_version_version_created_at_idx",
-          "columns": [
-            "version_created_at"
-          ],
+          "columns": ["version_created_at"],
           "isUnique": false
         },
         "_excalidraw_scenes_v_version_version__status_idx": {
           "name": "_excalidraw_scenes_v_version_version__status_idx",
-          "columns": [
-            "version__status"
-          ],
+          "columns": ["version__status"],
           "isUnique": false
         },
         "_excalidraw_scenes_v_created_at_idx": {
           "name": "_excalidraw_scenes_v_created_at_idx",
-          "columns": [
-            "created_at"
-          ],
+          "columns": ["created_at"],
           "isUnique": false
         },
         "_excalidraw_scenes_v_updated_at_idx": {
           "name": "_excalidraw_scenes_v_updated_at_idx",
-          "columns": [
-            "updated_at"
-          ],
+          "columns": ["updated_at"],
           "isUnique": false
         },
         "_excalidraw_scenes_v_latest_idx": {
           "name": "_excalidraw_scenes_v_latest_idx",
-          "columns": [
-            "latest"
-          ],
+          "columns": ["latest"],
           "isUnique": false
         }
       },
@@ -317,12 +291,8 @@
           "name": "_excalidraw_scenes_v_parent_id_excalidraw_scenes_id_fk",
           "tableFrom": "_excalidraw_scenes_v",
           "tableTo": "excalidraw_scenes",
-          "columnsFrom": [
-            "parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -368,23 +338,17 @@
       "indexes": {
         "payload_locked_documents_global_slug_idx": {
           "name": "payload_locked_documents_global_slug_idx",
-          "columns": [
-            "global_slug"
-          ],
+          "columns": ["global_slug"],
           "isUnique": false
         },
         "payload_locked_documents_updated_at_idx": {
           "name": "payload_locked_documents_updated_at_idx",
-          "columns": [
-            "updated_at"
-          ],
+          "columns": ["updated_at"],
           "isUnique": false
         },
         "payload_locked_documents_created_at_idx": {
           "name": "payload_locked_documents_created_at_idx",
-          "columns": [
-            "created_at"
-          ],
+          "columns": ["created_at"],
           "isUnique": false
         }
       },
@@ -442,37 +406,27 @@
       "indexes": {
         "payload_locked_documents_rels_order_idx": {
           "name": "payload_locked_documents_rels_order_idx",
-          "columns": [
-            "order"
-          ],
+          "columns": ["order"],
           "isUnique": false
         },
         "payload_locked_documents_rels_parent_idx": {
           "name": "payload_locked_documents_rels_parent_idx",
-          "columns": [
-            "parent_id"
-          ],
+          "columns": ["parent_id"],
           "isUnique": false
         },
         "payload_locked_documents_rels_path_idx": {
           "name": "payload_locked_documents_rels_path_idx",
-          "columns": [
-            "path"
-          ],
+          "columns": ["path"],
           "isUnique": false
         },
         "payload_locked_documents_rels_users_id_idx": {
           "name": "payload_locked_documents_rels_users_id_idx",
-          "columns": [
-            "users_id"
-          ],
+          "columns": ["users_id"],
           "isUnique": false
         },
         "payload_locked_documents_rels_excalidraw_scenes_id_idx": {
           "name": "payload_locked_documents_rels_excalidraw_scenes_id_idx",
-          "columns": [
-            "excalidraw_scenes_id"
-          ],
+          "columns": ["excalidraw_scenes_id"],
           "isUnique": false
         }
       },
@@ -481,12 +435,8 @@
           "name": "payload_locked_documents_rels_parent_fk",
           "tableFrom": "payload_locked_documents_rels",
           "tableTo": "payload_locked_documents",
-          "columnsFrom": [
-            "parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -494,12 +444,8 @@
           "name": "payload_locked_documents_rels_users_fk",
           "tableFrom": "payload_locked_documents_rels",
           "tableTo": "users",
-          "columnsFrom": [
-            "users_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["users_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -507,12 +453,8 @@
           "name": "payload_locked_documents_rels_excalidraw_scenes_fk",
           "tableFrom": "payload_locked_documents_rels",
           "tableTo": "excalidraw_scenes",
-          "columnsFrom": [
-            "excalidraw_scenes_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["excalidraw_scenes_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -565,23 +507,17 @@
       "indexes": {
         "payload_preferences_key_idx": {
           "name": "payload_preferences_key_idx",
-          "columns": [
-            "key"
-          ],
+          "columns": ["key"],
           "isUnique": false
         },
         "payload_preferences_updated_at_idx": {
           "name": "payload_preferences_updated_at_idx",
-          "columns": [
-            "updated_at"
-          ],
+          "columns": ["updated_at"],
           "isUnique": false
         },
         "payload_preferences_created_at_idx": {
           "name": "payload_preferences_created_at_idx",
-          "columns": [
-            "created_at"
-          ],
+          "columns": ["created_at"],
           "isUnique": false
         }
       },
@@ -632,30 +568,22 @@
       "indexes": {
         "payload_preferences_rels_order_idx": {
           "name": "payload_preferences_rels_order_idx",
-          "columns": [
-            "order"
-          ],
+          "columns": ["order"],
           "isUnique": false
         },
         "payload_preferences_rels_parent_idx": {
           "name": "payload_preferences_rels_parent_idx",
-          "columns": [
-            "parent_id"
-          ],
+          "columns": ["parent_id"],
           "isUnique": false
         },
         "payload_preferences_rels_path_idx": {
           "name": "payload_preferences_rels_path_idx",
-          "columns": [
-            "path"
-          ],
+          "columns": ["path"],
           "isUnique": false
         },
         "payload_preferences_rels_users_id_idx": {
           "name": "payload_preferences_rels_users_id_idx",
-          "columns": [
-            "users_id"
-          ],
+          "columns": ["users_id"],
           "isUnique": false
         }
       },
@@ -664,12 +592,8 @@
           "name": "payload_preferences_rels_parent_fk",
           "tableFrom": "payload_preferences_rels",
           "tableTo": "payload_preferences",
-          "columnsFrom": [
-            "parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["parent_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -677,12 +601,8 @@
           "name": "payload_preferences_rels_users_fk",
           "tableFrom": "payload_preferences_rels",
           "tableTo": "users",
-          "columnsFrom": [
-            "users_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["users_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -735,16 +655,12 @@
       "indexes": {
         "payload_migrations_updated_at_idx": {
           "name": "payload_migrations_updated_at_idx",
-          "columns": [
-            "updated_at"
-          ],
+          "columns": ["updated_at"],
           "isUnique": false
         },
         "payload_migrations_created_at_idx": {
           "name": "payload_migrations_created_at_idx",
-          "columns": [
-            "created_at"
-          ],
+          "columns": ["created_at"],
           "isUnique": false
         }
       },
