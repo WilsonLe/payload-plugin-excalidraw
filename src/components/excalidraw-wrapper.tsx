@@ -1,11 +1,9 @@
 "use client";
+import type { ExcalidrawProps } from "@excalidraw/excalidraw/types";
+
 import { Excalidraw } from "@excalidraw/excalidraw";
 import "@excalidraw/excalidraw/index.css";
 
-export const ExcalidrawWrapper: React.FC = () => {
-  return (
-    <div style={{ height: "100%", width: "100%" }}>
-      <Excalidraw />
-    </div>
-  );
+export const ExcalidrawWrapper: React.FC<ExcalidrawProps> = (props) => {
+  return <Excalidraw {...props} />;
 };
