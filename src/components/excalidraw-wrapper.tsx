@@ -8,22 +8,24 @@ export const ExcalidrawWrapper: FC = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // Dynamically load the Vite bundle script.
     const script = document.createElement("script");
-    script.src = "/build/excalidraw.umd.js";
-    script.type = "module";
+    script.src = "/build/excalidraw.umd.js"; // Adjust this path as needed
+    // Remove type="module" for UMD bundles.
     script.async = true;
     script.onload = () => {
-      if (containerRef.current && window.mountExcalidraw) {
-        window.mountExcalidraw(containerRef.current);
+      if (
+        containerRef.current &&
+        typeof window.ExcalidrawAppLib === "function"
+      ) {
+        // Now call the default export (which is the mount function)
+        window.ExcalidrawAppLib(containerRef.current);
       } else {
-        console.error("mountExcalidraw is not defined");
+        console.error("mount function not found on ExcalidrawAppLib");
       }
     };
 
     document.body.appendChild(script);
 
-    // Cleanup the script on component unmount
     return () => {
       document.body.removeChild(script);
     };

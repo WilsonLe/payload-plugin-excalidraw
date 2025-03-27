@@ -21,10 +21,10 @@ index 11e9fd84..78eeb026 100644
  VITE_APP_FIREBASE_CONFIG='{"apiKey":"AIzaSyAd15pYlMci_xIp9ko6wkEsDzAAA0Dn0RU","authDomain":"excalidraw-room-persistence.firebaseapp.com","databaseURL":"https://excalidraw-room-persistence.firebaseio.com","projectId":"excalidraw-room-persistence","storageBucket":"excalidraw-room-persistence.appspot.com","messagingSenderId":"654800341332","appId":"1:654800341332:web:4a692de832b55bd57ce0c1"}'
  
 diff --git a/excalidraw-app/index.tsx b/excalidraw-app/index.tsx
-index 98c902e3..f03693d5 100644
+index 98c902e3..692078d9 100644
 --- a/excalidraw-app/index.tsx
 +++ b/excalidraw-app/index.tsx
-@@ -6,12 +6,18 @@ import "../excalidraw-app/sentry";
+@@ -6,12 +6,19 @@ import "../excalidraw-app/sentry";
  
  import ExcalidrawApp from "./App";
  
@@ -47,16 +47,17 @@ index 98c902e3..f03693d5 100644
 +  );
 +}
 +
-+if (window) {
++// Export as the default export so the UMD build will assign the function to the global.
++export default mountExcalidraw;
++
++if (typeof window !== "undefined") {
 +  window.__EXCALIDRAW_SHA__ = import.meta.env.VITE_APP_GIT_SHA;
-+  // @ts-ignore
-+  window.mountExcalidraw = mountExcalidraw;
 +}
 diff --git a/excalidraw-app/vite.config.mts b/excalidraw-app/vite.config.mts
-index f10e742f..7c2b6f43 100644
+index f10e742f..51de84f1 100644
 --- a/excalidraw-app/vite.config.mts
 +++ b/excalidraw-app/vite.config.mts
-@@ -8,18 +8,19 @@ import checker from "vite-plugin-checker";
+@@ -8,18 +8,20 @@ import checker from "vite-plugin-checker";
  import { createHtmlPlugin } from "vite-plugin-html";
  import Sitemap from "vite-plugin-sitemap";
  import { woff2BrowserPlugin } from "../scripts/woff2/woff2-vite-plugins";
@@ -68,6 +69,7 @@ index f10e742f..7c2b6f43 100644
 -  // https://vitejs.dev/config/
 +
    return {
++    base: "/build/",
 +    define: {
 +      "process.env": {}, // Replace process.env with an empty object
 +    },
@@ -81,16 +83,16 @@ index f10e742f..7c2b6f43 100644
      envDir: "../",
      resolve: {
        alias: [
-@@ -66,43 +67,48 @@ export default defineConfig(({ mode }) => {
+@@ -66,43 +68,48 @@ export default defineConfig(({ mode }) => {
        ],
      },
      build: {
 +      // Library mode configuration:
 +      lib: {
 +        // Use your Excalidraw entry file as the library entry point.
-+        entry: path.resolve(__dirname, "../packages/excalidraw/index.tsx"),
++        entry: path.resolve(__dirname, "index.tsx"),
 +        // Global variable name for your library (useful for UMD/IIFE builds)
-+        name: "ExcalidrawLib",
++        name: "ExcalidrawAppLib",
 +        // Formats the library exports
 +        formats: ["umd"],
 +        // Output file naming pattern
@@ -102,12 +104,12 @@ index f10e742f..7c2b6f43 100644
 +      assetsInlineLimit: 0,
        rollupOptions: {
 +        // Prevent bundling React and ReactDOM in your library.
-+        external: ["react", "react-dom"],
++        // external: ["react", "react-dom"],
          output: {
-+          globals: {
-+            react: "React",
-+            "react-dom": "ReactDOM",
-+          },
++          // globals: {
++          //   react: "React",
++          //   "react-dom": "ReactDOM",
++          // },
            assetFileNames(chunkInfo) {
              if (chunkInfo?.name?.endsWith(".woff2")) {
                const family = chunkInfo.name.split("-")[0];
@@ -149,7 +151,7 @@ index f10e742f..7c2b6f43 100644
          generateRobotsTxt: false,
        }),
        woff2BrowserPlugin(),
-@@ -123,12 +129,10 @@ export default defineConfig(({ mode }) => {
+@@ -123,12 +130,10 @@ export default defineConfig(({ mode }) => {
        VitePWA({
          registerType: "autoUpdate",
          devOptions: {
@@ -163,7 +165,7 @@ index f10e742f..7c2b6f43 100644
            globIgnores: [
              "fonts.css",
              "**/locales/**",
-@@ -146,7 +150,6 @@ export default defineConfig(({ mode }) => {
+@@ -146,7 +151,6 @@ export default defineConfig(({ mode }) => {
                    maxAgeSeconds: 60 * 60 * 24 * 90, // 90 days
                  },
                  cacheableResponse: {
@@ -171,7 +173,7 @@ index f10e742f..7c2b6f43 100644
                    statuses: [0, 200],
                  },
                },
-@@ -168,7 +171,7 @@ export default defineConfig(({ mode }) => {
+@@ -168,7 +172,7 @@ export default defineConfig(({ mode }) => {
                  cacheName: "locales",
                  expiration: {
                    maxEntries: 50,
@@ -180,7 +182,7 @@ index f10e742f..7c2b6f43 100644
                  },
                },
              },
-@@ -179,7 +182,7 @@ export default defineConfig(({ mode }) => {
+@@ -179,7 +183,7 @@ export default defineConfig(({ mode }) => {
                  cacheName: "chunk",
                  expiration: {
                    maxEntries: 50,
@@ -189,7 +191,7 @@ index f10e742f..7c2b6f43 100644
                  },
                },
              },
-@@ -213,7 +216,7 @@ export default defineConfig(({ mode }) => {
+@@ -213,7 +217,7 @@ export default defineConfig(({ mode }) => {
              },
            ],
            start_url: "/",
